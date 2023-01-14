@@ -40,12 +40,16 @@ body {
     text-decoration: none;
     color:var(--logo-color);
     }
-.list, .link-mail, .link-tel, .site-nav-list,
+.list, .link, .link-mail, .link-tel, .site-nav-list,
 .contact-nav-list, .button-list {
     display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
+    transition-property:color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    
     }
 .link, .link-mail, .link-tel {
     text-decoration: none;
@@ -58,6 +62,7 @@ body {
 .site-nav-list .link:hover,
 .site-nav-list .link:focus {
     color: var(--accent-color); 
+   
     }
 .contact-nav-list .link-mail:hover,
 .link-tel:hover,
@@ -69,17 +74,26 @@ body {
 .link.current {
     position: relative;
     color: var(--accent-color);
-  
 }
-.link.current::after {
+ 
+
+.link.current:after {
     content: "";
     position: absolute;
-    top: 50px;
+    top: 52px;
     left: 0;
     background-color: var(--accent-color);
+    display: block;
     width: 100%;
     height: 4px;
     border-radius: 2px;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 250ms;
+    transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link.current:hover::after{
+    opacity: 1;
 }
 .list {
     display: flex;
@@ -173,7 +187,7 @@ img {
     margin-left: auto;
     margin-right: auto;
     background-image: linear-gradient(to right,
-    rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
     url("../images/Img\ \(1\).jpg");
     }
 .title {
@@ -246,8 +260,9 @@ img {
     font-size: 16px;
     line-height: 1.62; 
     letter-spacing: 0.03em; 
-    transition: color 250mc cubic-bezier(0.4, 0, 0.2, 1);
-    transition: background-color 250mc cubic-bezier(0.4, 0, 0.2, 1);
+    transition-property: color, background-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }   
 .button-filter:hover, .button-filter:focus {
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
@@ -379,8 +394,9 @@ img {
     background-color: var(--background-header-color);
     fill: var(--icon-color);
     border-radius: 50%;
-    transition: fill 250mc cubic-bezier(0.4, 0, 0.2, 1);
-    transition: background-color 250mc cubic-bezier(0.4, 0, 0.2, 1);
+    transition-property: fill, background-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .client-list {
     display: flex;
@@ -399,7 +415,9 @@ img {
     border: 1px solid #AFB1B8;
     border-radius: 4px;
     fill:var(--icon-color) ;
-    transition: fill 250mc cubic-bezier(0.4, 0, 0.2, 1);
+    transition-property: fill;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .client-link:hover, .client-link:focus {
     fill:var(--accent-color);
@@ -427,7 +445,7 @@ img {
     position: relative; 
     overflow: hidden;
 }
-.works-img:hover .works-overlay{
+.works:hover .works-overlay{
     transform: translateY(0);
 }
 .works-overlay {
@@ -492,7 +510,7 @@ img {
 .footer-site-nav-list {
     list-style: none;
     padding: 20px 0 0 0;
-    margin: 0;
+    margin: 0; 
 }
 .footer-title {
     padding-top: 0;
@@ -513,6 +531,9 @@ img {
     fill: var(--background-header-color);
     border-radius: 50%;
     padding: 0;
+    transition-property: fill, background-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-social {
     display: flex;
@@ -557,6 +578,10 @@ img {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button-modal {
     position: absolute;
@@ -565,6 +590,7 @@ img {
     padding: 0;
     margin: 0;
     border: 0;
+    
 }
 .icon-close {
     background: var(--hero-color);
@@ -578,21 +604,23 @@ img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(100%) ;
     background-color: var(--hero-color);
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    animation: animatescale 3000ms linear;
-  
+    transition-property: transform opaciti ;
+    transition-duration: 1000ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+   
 }
-@keyframes animatescale {
-    0% {transform: scale(0);}
-    50% {transform: scale(0.5);}
-    100% {transform: scale(1);}
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0%);
+
 }
 .backdrop.is-hidden {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-  }
+    transition: opaciti;
+}
   
